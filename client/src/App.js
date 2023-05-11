@@ -1,5 +1,8 @@
 import './App.css';
 import { useEffect, useState } from "react";
+import Helloworld from './components/helloWorld';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 function App() {
   const [message, setMessage] = useState("");
@@ -19,7 +22,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{message}</h1>
+       <Router>
+      <div>
+        <Routes>
+          <Route exact path='/' element={<Helloworld />} />
+          </Routes>
+      </div>
+    </Router>
     </div>
   );
 }
