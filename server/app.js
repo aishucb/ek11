@@ -6,7 +6,7 @@ require("dotenv").config();
 
 
 //middleware
-const corsOptions = { origin: "https://ek11-frontend.onrender.com/"}
+const corsOptions = { origin: "https://ek11-frontend.onrender.com"}
 app.use(express.json());
 app.use(cors (corsOptions));
 
