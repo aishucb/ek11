@@ -5,7 +5,7 @@ function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000")
+    fetch("https://ek11.onrender.com")
       .then(res => {
         if (!res.ok) {
           throw new Error("Network response was not ok");
