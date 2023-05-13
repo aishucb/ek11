@@ -125,7 +125,7 @@ function Helloworld() {
           <h3>Our Impact</h3>
           <h6 className='impact'>Our impact goes beyond the scoreboard, as we strive to empower and inspire individuals both on and off the cricket field.</h6>
         </div>
-        <div className="impactnumbers col-sm-12 col-md-12 col-lg-7 col-xl-7 grid-container">
+        <div className="impactnumbers col-sm-11 col-md-11 col-lg-8 col-xl-8 grid-container">
           <div className="grid-item"><h1>{matchnum}</h1><h3>Matches</h3></div>
           <div className="grid-item"><h1>{won}</h1><h3>Won</h3></div>
           <div className="grid-item"><h1>{percentage}%</h1><h3>Won percentage</h3></div>
