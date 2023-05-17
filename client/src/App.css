@@ -116,7 +116,7 @@
 {
   background-color: #465055;
   margin-top: 25%;
-  width: fit-content;
+  
   padding-right: 55%;
   padding-left: 100px;
   color: white;
@@ -166,15 +166,7 @@
   background-color: #65742B;
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Rubik:wght@300&display=swap');
-.quote{
-  color: #ffffff;
-  font-family: 'Inter', sans-serif;
-  font-family: 'Rubik', sans-serif;
-  font-size: 20px;
-  text-align: center;
-  padding: 50px;
- 
-}
+
 .cricboyimg
 {
   height: 300px;
@@ -225,7 +217,6 @@
   font-family: 'Rubik', sans-serif;
   color: #65742B;
   padding-top: 10%;
-  padding-left: 5%;
   text-align: center;
   padding-bottom: 10%;
   
@@ -241,7 +232,7 @@
 }
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
+  padding-left: 20px;
   font-size: 30px;
   text-align: center;
 }
@@ -278,4 +269,46 @@
   font-family: 'Inter', sans-serif;
   font-family: 'Rubik', sans-serif;
   text-align: center;
+}
+.content
+{
+  display: none;
+  color: #000000;
+  width: 100vh;
+}
+.content h5{
+  color: #000000;
+}
+#textgame {
+  background-color: #ffffff;
+  color:  #65742B;;
+  font-weight: 400;
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  font-family: 'Rubik', sans-serif;
+  box-sizing: border-box;
+  letter-spacing: 6px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+#textgame span {
+  display: inline-block;
+}
+
+.ml15 {
+  font-weight: 800;
+  font-size: 3.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+}
+
+.ml15 .word {
+  display: inline-block;
+  line-height: 1em;
 }
