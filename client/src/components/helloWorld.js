@@ -5,7 +5,8 @@ import grppic1 from '../assets/grouppic.png';
 import firebase from 'firebase/compat/app'; // import firebase compat module
 import 'firebase/compat/firestore'; // import firestore compat module
 import Letterize from "https://cdn.skypack.dev/letterizejs@2.0.0";
-import anime from 'animejs/lib/anime.es.js';
+import anime from "animejs"
+
 
 
 
@@ -184,7 +185,7 @@ function Helloworld() {
       <div className="row greenquote">
         <div id="textgame" className="quote col-sm-12 col-md-12 col-lg-6 col-xl-6">
           <div class="animate-me">
-            //"Bringing together individuals with a shared passion for cricket, and creating a sense of belonging through teamwork, respect, and dedication"
+            "Bringing together individuals with a shared passion for cricket, and creating a sense of belonging through teamwork, respect, and dedication"
           </div>
 
         </div>
