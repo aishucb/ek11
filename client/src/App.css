@@ -122,7 +122,7 @@
   color: white;
   padding-top: 15px;
   padding-bottom: 15px;
-  font-family: 'Trebuchet MS', sans-serif;;
+  font-family: 'Trebuchet MS', sans-serif;
 }
 
 .connect
@@ -281,7 +281,7 @@
 }
 #textgame {
   background-color: #ffffff;
-  color:  #65742B;;
+  color:  #65742B;
   font-weight: 400;
   font-size: 2vw;
   display: flex;
