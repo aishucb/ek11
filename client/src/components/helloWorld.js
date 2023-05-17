@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useRef} from 'react';
 import logo from '../assets/logo.png';
 import cricboy from '../assets/9.png';
 import grppic1 from '../assets/grouppic.png';
 import firebase from 'firebase/compat/app'; // import firebase compat module
 import 'firebase/compat/firestore'; // import firestore compat module
-
+import Letterize from "https://cdn.skypack.dev/letterizejs@2.0.0";
+import anime from 'animejs/lib/anime.es.js';
 
 
 
@@ -44,6 +45,7 @@ function Helloworld() {
   const [players, setPlayers] = useState([]);
 
 
+
   useEffect(() => {
     // retrieve all documents in the achievements collection
     achievementsRef.get().then((querySnapshot) => {
@@ -70,7 +72,72 @@ function Helloworld() {
     });
   }, []);
 
+  function handleToggleDisplay(id) {
+    var element = document.getElementById(id);
+    if (element.style.display === "block") {
+      element.style.display = "none";
+    } else {
+      element.style.display = "block";
+    }
+  }
 
+
+  useEffect(() => {
+    const test = new Letterize({
+      targets: '.animate-me',
+    });
+
+    const animation = anime.timeline({
+      targets: test.listAll,
+      delay: anime.stagger(100, {
+        grid: [test.list[0].length, test.list.length],
+        from: 'center',
+      }),
+      loop: true,
+    });
+
+    animation
+      .add({
+        scale: 0.5,
+      })
+      .add({
+        letterSpacing: '10px',
+      })
+      .add({
+        scale: 1,
+      })
+      .add({
+        letterSpacing: '6px',
+      });
+  }, []);
+
+  function AnimationComponent() {
+    const animationRef = useRef(null);
+
+    useEffect(() => {
+      animationRef.current = anime.timeline({ loop: true })
+        .add({
+          targets: '.ml15 .word',
+          scale: [14, 1],
+          opacity: [0, 1],
+          easing: 'easeOutCirc',
+          duration: 800,
+          delay: (el, i) => 800 * i,
+        }).add({
+          targets: '.ml15',
+          opacity: 0,
+          duration: 1000,
+          easing: 'easeOutExpo',
+          delay: 1000,
+        });
+
+      return () => {
+        animationRef.current.pause();
+      };
+    }, []);
+
+    return null; // Render nothing, as this component only manages the animation
+  }
   return (
     <div className="container-fluid">
       <div className="row">
@@ -79,8 +146,12 @@ function Helloworld() {
         </div>
         <div className=" headwithbg col-sm-12 col-md-12 col-lg-9 col-xl-9">
           <div className="ek11">
-            <h1>EK 11</h1>
-            <h3>Cricket Club</h3>
+            <h1 class="ml15">
+              <span class="word">EK</span>
+              <span class="word">11</span>
+              <AnimationComponent />
+            </h1>
+            <h3>Cricket club</h3>
           </div>
           <div className="connect">
             Inspiring and nurturing the next generation of cricket players
@@ -102,7 +173,7 @@ function Helloworld() {
           <a className="links" href="#player">
             Players
           </a>
-         
+
         </div>
       </div>
       <div className="row" id="grouppic">
@@ -111,8 +182,11 @@ function Helloworld() {
         </div>
       </div>
       <div className="row greenquote">
-        <div id="quotes" className="quote col-sm-12 col-md-12 col-lg-6 col-xl-6" >
-          "Bringing together individuals with a shared passion for cricket, and creating a sense of belonging through teamwork, respect, and dedication"
+        <div id="textgame" className="quote col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <div class="animate-me">
+            //"Bringing together individuals with a shared passion for cricket, and creating a sense of belonging through teamwork, respect, and dedication"
+          </div>
+
         </div>
         <div className="greenimage col-sm-0 col-md-0 col-lg-6 col-xl-6">
 
@@ -121,11 +195,13 @@ function Helloworld() {
         </div>
       </div>
       <div className="row ourimpact" id="score">
-        <div className="ourimpact col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <div className="ourimpact col-sm-10 col-md-10 col-lg-4 col-xl-4">
           <h3>Our Impact</h3>
           <h6 className='impact'>Our impact goes beyond the scoreboard, as we strive to empower and inspire individuals both on and off the cricket field.</h6>
+
+
         </div>
-        <div className="impactnumbers col-sm-12 col-md-12 col-lg-8 col-xl-8 grid-container">
+        <div className="impactnumbers col-sm-10 col-md-10 col-lg-8 col-xl-8 grid-container">
           <div className="grid-item"><h1>{matchnum}</h1><h3>Matches</h3></div>
           <div className="grid-item"><h1>{won}</h1><h3>Won</h3></div>
           <div className="grid-item"><h1>{percentage}%</h1><h3>Won percentage</h3></div>
@@ -136,30 +212,47 @@ function Helloworld() {
         </div>
 
       </div>
-      
 
-       <div id="player">
-          {players.map((player) => (
-            <div key={player.name} className='row playerdata players' >
-              <div className=" col-sm-12 col-md-12 col-lg-4 col-xl-4">
-              <img className='playerimage' src={player.urlofimg} alt="Database" /> 
-              </div>
-              <div className=" col-sm-12 col-md-12 col-lg-8 col-xl-8">
+
+      <div id="player">
+        {players.map((player) => (
+          <div key={player.name} className='row playerdata players details' onClick={() => handleToggleDisplay(player.name)} >
+            <div className=" col-sm-12 col-md-12 col-lg-4 col-xl-4">
+              <img className='playerimage' src={player.urlofimg} alt="Database" />
+            </div>
+            <div className=" col-sm-12 col-md-12 col-lg-8 col-xl-8">
               <h2>{player.name}</h2>
               <h5>{player.designation}</h5>
               <h6>{player.quote}</h6>
+            </div>
+            <div className="content" id={player.name} >
+              <div className="card" >
+                <div className="card-body">
+                  <h5 className="card-title">{player.name}</h5>
+                  <p className="card-text">{player.designation}</p>
+                </div>
+                <ul className="list-group list-group-flush">
+                  
+                  <li className="list-group-item"> {player.bat}</li>
+                  <li className="list-group-item"> {player.ball}</li>
+                </ul>
+
               </div>
             </div>
-      ))}
+          </div>
+        ))}
       </div>
-       <div className="connectwithdeveloper">
-            <a href="https://www.linkedin.com/in/aiswarya-c-b-09aa71200">Connect with the developer.</a>
+      <div className="connectwithdeveloper">
+        <a href="https://www.linkedin.com/in/aiswarya-c-b-09aa71200">Connect with the developer.</a>
       </div>
     </div>
-    
+
   );
 }
 
 export default Helloworld;
 
-//yarn dev and yarn start
+//cd server && yarn dev and cd client && yarn start
+// <div id="quotes"  >
+
+//</div>
